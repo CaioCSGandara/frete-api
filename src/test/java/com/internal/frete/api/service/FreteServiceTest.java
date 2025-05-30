@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -58,10 +60,34 @@ public class FreteServiceTest {
     }
 
 
+    @Test
+    void calculaERetornaTresFretesValidos() {
+        List<CalculoFreteResponse> calculoFreteResponses = freteService.calcularFretesAplicaveis(new CalculoFreteRequest(20, 300, null));
+        assertThat(calculoFreteResponses.size()).isEqualTo(3);
+    }
+
+    @Test
+    void calculaERetornaDoisFretesValidos() {
+        List<CalculoFreteResponse> calculoFreteResponses = freteService.calcularFretesAplicaveis(new CalculoFreteRequest(30, 300, null));
+        assertThat(calculoFreteResponses.size()).isEqualTo(2);
+    }
+
+    @Test
+    void calculaERetornaUmFreteValido() {
+        List<CalculoFreteResponse> calculoFreteResponses = freteService.calcularFretesAplicaveis(new CalculoFreteRequest(60, 300, null));
+        assertThat(calculoFreteResponses.size()).isEqualTo(1);
+    }
+
+    @Test
+    void retornaNuloComTodosFretesInvalidos() {
+        List<CalculoFreteResponse> calculoFreteResponses = freteService.calcularFretesAplicaveis(new CalculoFreteRequest(60, 5000, null));
+        assertThat(calculoFreteResponses.size()).isEqualTo(0);
+    }
+
+
 
     //calcular multiplos fretes:
 
-    //devolve 3 fretes
     //devolve 2 fretes
     //devolve 1 frete
     //devolve null (nenhum frete aplicável)
