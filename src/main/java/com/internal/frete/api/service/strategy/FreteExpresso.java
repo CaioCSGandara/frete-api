@@ -12,7 +12,7 @@ public class FreteExpresso implements CalculoFreteStrategy {
 
     @Override
     public boolean isFreteAplicavel(CalculoFreteRequest calculoFreteRequest, FreteValoresDefault freteValoresDefault) {
-        return (calculoFreteRequest.getPeso() <= freteValoresDefault.getFreteEconomico().getPesoMaximoKg()
-                && calculoFreteRequest.getDistancia() <= freteValoresDefault.getFreteEconomico().getDistanciaMaximaKm());
+        return (calculoFreteRequest.getPeso() <= freteValoresDefault.getFreteExpresso().getPesoMaximoKg()
+                && calculoFreteRequest.getDistancia() <= freteValoresDefault.getFreteExpresso().getDistanciaMaximaKm());
     }
 }
