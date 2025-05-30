@@ -1,5 +1,7 @@
 package com.internal.frete.api.dto;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +10,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CalculoFreteRequest implements Cloneable {
+
+    @Min(value = 1, message = "Peso não pode ser 0 ou negativo.")
+    @Max(value = 1000, message = "Peso não pode exceder 1 tonelada.")
     private double peso;
+
+    @Min(value = 1, message = "Distância não pode ser 0 ou negativa.")
+    @Max(value = 1000, message = "Distância não pode exceder 2000km km.")
     private double distancia;
     private String tipoFrete;
 
