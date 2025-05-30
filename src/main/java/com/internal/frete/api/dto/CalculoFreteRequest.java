@@ -16,7 +16,7 @@ public class CalculoFreteRequest implements Cloneable {
     private double peso;
 
     @Min(value = 1, message = "Distância não pode ser 0 ou negativa.")
-    @Max(value = 1000, message = "Distância não pode exceder 2000km km.")
+    @Max(value = 5000, message = "Distância não pode exceder 5000km km.")
     private double distancia;
     private String tipoFrete;
 
